@@ -4,8 +4,8 @@ const API_key = "6bec4de18a94a1ec6fd65b14fff7ae04";
 const BASE_URL = "https://api.openweathermap.org/data/2.5";
 
 type MainProps = {
-  temp: string;
-  feels_like: string;
+  temp: number;
+  feels_like: number;
   temp_min: number;
   temp_max: number;
   humidity: number;
@@ -18,8 +18,8 @@ type CoordinatesProps = {
 
 type SysProps = {
   country: string;
-  sunrise: string;
-  sunset: string;
+  sunrise: number;
+  sunset: number;
 };
 
 type WindProps = {
@@ -27,27 +27,25 @@ type WindProps = {
 };
 
 type WeatherProps = {
-  main: { details: string };
-  icon: string;
+  main: string;
+  icon: number;
 };
 
 type DailyWeatherProps = {
   dt: number;
   temp: {
-    day: string;
+    day: number;
   };
   weather: {
-    icon: string;
+    icon: number;
   }[];
 };
 
 type HourlyWeatherProps = {
   dt: number;
-  temp: {
-    day: string;
-  };
+  temp: number;
   weather: {
-    icon: string;
+    icon: number;
   }[];
 };
 
@@ -65,34 +63,6 @@ export interface OpenWeatherFormatIProps {
   wind: WindProps;
   weather: WeatherProps[];
 }
-
-// export interface OpenWeatherFormattedProps {
-//     lon: string;
-//     lat: string;
-//     temp: string;
-//     humidity: number;
-//     temp_min: number;
-//     temp_max: number;
-//     feels_like: string;
-//     name: string;
-//     dt: string;
-//     country: string;
-//     sunrise: string;
-//     sunset: string;
-//     speed: string;
-//     details: {details:string};
-//     icon: string;
-//     timezone: string;
-//     hourly: {
-//       title: string;
-//       icon: string;
-//     }[];
-//     daily: {
-//       title: string;
-//       temp: string;
-//       icon: string;
-//     }[];
-//   }
 
 // https://api.openweathermap.org/data/2.5/weather?q=tokyo&appid=6bec4de18a94a1ec6fd65b14fff7ae04
 const getWeatherData = (
@@ -141,6 +111,7 @@ const formatCurrentWeather = (data: OpenWeatherFormatIProps) => {
 
 const formatForecastWeather = (data: ForecastWeatherProps) => {
   let { timezone, daily, hourly } = data;
+  console.log(daily);
   const tempDaily = daily.slice(1, 6).map((d) => {
     return {
       title: formatToLocalTime(d.dt, timezone, "ccc"),

@@ -7,39 +7,37 @@ import TemperatureandDetails from "./components/TemperatureandDetails";
 import Forecast from "./components/Forecast";
 import getFormatedWeatherData from "./services/weatherService";
 
-interface OpenWeatherFormattedProps {
+export type OpenWeatherFormattedProps = {
   lon: string;
   lat: string;
-  temp: string;
+  temp: number;
   humidity: number;
   temp_min: number;
   temp_max: number;
-  feels_like: string;
+  feels_like: number;
   name: string;
   dt: number; // Change type to string
   country: string;
-  sunrise: string;
-  sunset: string;
+  sunrise: number;
+  sunset: number;
   speed: string;
   details: string;
-  icon: string;
+  icon: number;
   timezone: string;
   hourly: {
     title: string;
-    temp: {
-      day: string;
-    };
-    icon: string;
+    temp: number;
+    icon: number;
   }[];
   daily: {
     title: string;
-    temp: string;
-    icon: string;
+    temp: number;
+    icon: number;
   }[];
 }
 
 function App() {
-  const [query, setQuery] = useState({ q: "lisbon" });
+  const [query, setQuery] = useState({ q: "bruges" });
   const [units, setUnits] = useState("metric");
   const [weather, setWeather] = useState<null | OpenWeatherFormattedProps>(null);
 
@@ -60,8 +58,8 @@ function App() {
         <>
           <TimeAndLocations weather={weather} />
           <TemperatureandDetails weather={weather} />
-          <Forecast title="hourly forecast" weather={weather} type='hourly' />
-          <Forecast title="daily forecast" weather={weather} type='daily'/>
+          <Forecast title="hourly forecast" items={weather.hourly}/>
+          <Forecast title="daily forecast" items={weather.daily}/>
         </>
       )}
     </div>

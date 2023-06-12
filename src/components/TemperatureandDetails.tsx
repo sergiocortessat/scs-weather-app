@@ -19,7 +19,7 @@ interface TemperatureAndDetailsProps {
     sunrise: number;
     sunset: number;
     speed: string;
-    humidity: string;
+    humidity: number;
     feels_like: number;
     timezone: string;
     icon:number;

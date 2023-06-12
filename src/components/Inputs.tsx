@@ -1,10 +1,9 @@
-import React from "react";
-import { CiSearch } from "react-icons/ci";
+import React, { SetStateAction,Dispatch } from 'react';import { CiSearch } from "react-icons/ci";
 import {BiCurrentLocation} from "react-icons/bi"
 
 interface CiSearchProps {
-    query: any;
-    setQuery: any;
+    query: {q: string};
+    setQuery: Dispatch<SetStateAction<{ q: string}>>;
 }
 const Index: React.FC<CiSearchProps> = (props) => {
     const { query, setQuery } = props

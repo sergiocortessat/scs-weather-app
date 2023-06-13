@@ -65,17 +65,26 @@ export interface OpenWeatherFormatIProps {
 }
 
 // https://api.openweathermap.org/data/2.5/weather?q=tokyo&appid=6bec4de18a94a1ec6fd65b14fff7ae04
-const getWeatherData = (
+const getWeatherData = async (
   infoType: string,
   searchParams: { [key: string]: string }
 ) => {
-  const url = new URL(BASE_URL + "/" + infoType);
-  url.search = new URLSearchParams({
-    ...searchParams,
-    appid: API_key,
-  }).toString();
-  console.log(url);
-  return fetch(url).then((response) => response.json());
+  try {
+    const url = new URL(BASE_URL + "/" + infoType);
+    url.search = new URLSearchParams({
+      ...searchParams,
+      appid: API_key,
+    }).toString();
+    console.log(url);
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("API request failed"); // Throw an error for bad API request
+    }
+    return response.json();
+  } catch (error) {
+    console.error(error);
+    throw error; // Re-throw the error to be caught by the caller
+  }
 };
 
 const formatCurrentWeather = (data: OpenWeatherFormatIProps) => {

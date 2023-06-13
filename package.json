@@ -2,7 +2,7 @@
   "name": "scs-weather-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://{sergiocortessat}.github.io/{scs-weather-app}",
+  "homepage": "https://github.com/sergiocortessat/scs-weather-app",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

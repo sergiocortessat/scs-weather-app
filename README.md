@@ -29,7 +29,7 @@
 
 ## Live Version
 
-* [Live Demo](https://sergiocortessat.github.io/JSWeatherApp/) 
+* [Live Demo](https://scs-weather-app.vercel.app/) 
 
 <!-- ABOUT THE PROJECT   -->
 ## About The Project

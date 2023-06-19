@@ -73,7 +73,7 @@ function App() {
 
   return (
     <div className="pb-4">
-    <div className={`mx-auto max-w-screen-md mt-4 py-6 px-32 bg-gradient-to-br ${formatBackground()} h-fit shadow-xl shadow-gray-400`}>
+    <div className={`mx-auto max-w-screen-md mt-4 py-6 px-32 bg-gradient-to-br ${formatBackground()} h-fit shadow-xl shadow-gray-400 rounded-lg`}>
       <TopButtons setQuery={setQuery} />
       <Inputs units={units} setQuery={setQuery} setUnits={setUnits} />
       {isLoading ? ( // Render spinner when isLoading is true
